@@ -2,9 +2,9 @@
 
 #include <std_msgs/msg/float32.hpp>
 #include <std_msgs/msg/bool.hpp>
+#include <sensor_msgs/msg/range.hpp>
 
 #include <serial/serial.h>
-#include <tf2/LinearMath/Quaternion.h>
 #include <unistd.h>
 
 #include <algorithm>
@@ -33,10 +33,14 @@ private:
   string port_;
   int baud_, smooth_, rate;
   float sonar_dist_01_, sonar_dist_02_, sonar_dist_03_, sonar_dist_04_;
+  sensor_msgs::msg::Range sonar_01_, sonar_02_, sonar_03_, sonar_04_;
+  bool pub_float_, pub_range_; 
+
   serial::Serial serial_;
   float max_sonar_dist_;
   std::deque<float> history_range_ = std::deque<float> (12, 0.25);
   rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr publisher_01, publisher_02, publisher_03, publisher_04;
+  rclcpp::Publisher<sensor_msgs::msg::Range>::SharedPtr sonar_pub_01, sonar_pub_02, sonar_pub_03, sonar_pub_04;
   rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr emergency_publisher;
   rclcpp::TimerBase::SharedPtr read_timer_, pub_timer_, emergency_timer_;
   

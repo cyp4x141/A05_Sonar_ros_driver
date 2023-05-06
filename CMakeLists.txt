@@ -17,7 +17,7 @@ find_package(rclcpp REQUIRED)
 
 find_package(serial REQUIRED)
 find_package(std_msgs REQUIRED)
-find_package(tf2 REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 
 
@@ -45,5 +45,6 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
-
-ament_auto_package(INSTALL_TO_SHARE)
+ament_auto_package(INSTALL_TO_SHARE
+  launch
+)
