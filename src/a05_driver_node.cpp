@@ -33,10 +33,10 @@ A05DriverNode::A05DriverNode(const rclcpp::NodeOptions & node_options)
   // standard Ros Range data publisher
   if (pub_range_)
   {
-    sonar_pub_01 = create_publisher<sensor_msgs::msg::Range>("~/sonar_01", 3);
-    sonar_pub_02 = create_publisher<sensor_msgs::msg::Range>("~/sonar_02", 3);
-    sonar_pub_03 = create_publisher<sensor_msgs::msg::Range>("~/sonar_03", 3);
-    sonar_pub_04 = create_publisher<sensor_msgs::msg::Range>("~/sonar_04", 3);
+    sonar_pub_01 = create_publisher<sensor_msgs::msg::Range>("~/sonar_01", 1);
+    sonar_pub_02 = create_publisher<sensor_msgs::msg::Range>("~/sonar_02", 1);
+    sonar_pub_03 = create_publisher<sensor_msgs::msg::Range>("~/sonar_03", 1);
+    sonar_pub_04 = create_publisher<sensor_msgs::msg::Range>("~/sonar_04", 1);
   }
   
   //过小值0.25判断

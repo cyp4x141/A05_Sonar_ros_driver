@@ -1,7 +1,7 @@
 #A05 sonar driver
 
 ## A05 sonar
-A05 is 1*4 sonar package which have 4 sonar sensor
+A05 is 1*4 sonar package which have 4 sonar sensors
 
 ## build
 ```
@@ -15,3 +15,4 @@ $ sudo chmod 777 /dev/${sonar-serial-port}
 $ source install/setup.bash
 $ ros2 launch a05_driver a05-sonar.launch.xml  
 ```
+`$ ros2 run tf2_ros static_transform_publisher "0" "0" "0" "0" "0" "0" "map" "sonar_01"` or use urdf to send TF  
