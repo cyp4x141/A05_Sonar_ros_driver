@@ -34,7 +34,7 @@ private:
   int baud_, smooth_, rate;
   float sonar_dist_01_, sonar_dist_02_, sonar_dist_03_, sonar_dist_04_;
   sensor_msgs::msg::Range sonar_01_, sonar_02_, sonar_03_, sonar_04_;
-  bool pub_float_, pub_range_; 
+  bool pub_float_, pub_range_, debug_; 
 
   serial::Serial serial_;
   float max_sonar_dist_;

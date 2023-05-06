@@ -11,6 +11,7 @@ A05DriverNode::A05DriverNode(const rclcpp::NodeOptions & node_options)
   rate = declare_parameter("rate", 10);
   pub_float_ = declare_parameter("pub_float", true);
   pub_range_ = declare_parameter("pub_range", true);
+  debug_ = declare_parameter("debug", true);
   // smooth参数，暂未使用
   smooth_ = declare_parameter("smooth", 4);
   // set parameter for serial
@@ -41,11 +42,8 @@ A05DriverNode::A05DriverNode(const rclcpp::NodeOptions & node_options)
   
   //过小值0.25判断
   emergency_publisher = create_publisher<std_msgs::msg::Bool>("~/close_range", 1);
-
   read_timer_ = create_wall_timer(second_type(1.0 / rate), std::bind(&A05DriverNode::readTimer, this));
-
   pub_timer_ = create_wall_timer(second_type(1.0 / 5), std::bind(&A05DriverNode::pubTimer, this));
-
   emergency_timer_ = create_wall_timer(second_type(1.0 / rate), std::bind(&A05DriverNode::emergencyTimer, this));
 }
 
@@ -138,10 +136,16 @@ void A05DriverNode::emergencyTimer()
 {
   std_msgs::msg::Bool emergency_range;
   auto min_it = std::min_element(history_range_.begin(), history_range_.end());
-  RCLCPP_INFO(this->get_logger(), "min_range is %f\n", *min_it);
+  if (debug_)
+  {
+    RCLCPP_INFO(this->get_logger(), "min_range is %f\n", *min_it);
+  }
   if (*min_it <= 0.25)
   {
-    RCLCPP_INFO(this->get_logger(), "min_range is lower than %f\n", *min_it);
+    if (debug_)
+    {
+      RCLCPP_INFO(this->get_logger(), "min_range is lower than %f\n", *min_it);
+    }
     emergency_range.data = true;
   }
   else emergency_range.data = false;

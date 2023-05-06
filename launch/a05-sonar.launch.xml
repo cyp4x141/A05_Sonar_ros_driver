@@ -6,6 +6,7 @@
     <param name="rate" value="10" />
     <param name="pub_float" value="false" />
     <param name="pub_range" value="true" />
+    <param name="debug" value="true" />
   </node>
 </launch>
 
