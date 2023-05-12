@@ -1,0 +1,11 @@
+<launch>
+  <node pkg="a05" type="a05" name="a05_driver" output="screen">
+    <param name="port" value="/dev/ttyUSB0" />
+    <param name="baud" value="9600" />
+    <param name="rate" value="10" />
+    <param name="pub_float" value="true" />
+    <param name="pub_range" value="true" />
+    <param name="debug" value="false" />
+  </node>
+</launch>
+
