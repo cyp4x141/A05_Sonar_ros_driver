@@ -43,7 +43,6 @@ class A05DriverNode {
         serial::Serial serial_;
         float max_sonar_dist_;
         std::deque<float> history_range_ = std::deque<float> (12, 0.25);
-        ros::NodeHandle nh;
         ros::Timer read_timer_;
         ros::Timer pub_timer_;
         ros::Timer emergency_timer_;
